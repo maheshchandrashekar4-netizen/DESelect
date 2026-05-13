@@ -1,0 +1,65 @@
+{
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "https://yourdomain.com/icon.png",
+    "category": "flow"
+  },
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Trigger Journey Activity",
+      "description": "Triggers another journey when contact reaches this activity"
+    }
+  },
+  "arguments": {
+    "execute": {
+      "url": "https://yourdomain.com/execute",
+      "verb": "POST",
+      "body": "",
+      "format": "json",
+      "header": "",
+      "inArguments": [
+        {
+          "contactKey": "{{Contact.Key}}"
+        },
+        {
+          "emailAddress": "{{Contact.Attribute.EmailAddress}}"
+        },
+        {
+          "journeyName": "{{Interaction.Name}}"
+        },
+        {
+          "definitionInstanceId": "{{Context.DefinitionInstanceId}}"
+        }
+      ],
+      "outArguments": [],
+      "timeout": 10000
+    }
+  },
+  "configurationArguments": {
+    "publish": {
+      "url": "https://yourdomain.com/publish"
+    },
+    "validate": {
+      "url": "https://yourdomain.com/validate"
+    },
+    "stop": {
+      "url": "https://yourdomain.com/stop"
+    }
+  },
+  "userInterfaces": {
+    "configModal": {
+      "url": "https://yourdomain.com/index.html",
+      "height": 600,
+      "width": 800
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [],
+        "outArguments": []
+      }
+    }
+  }
+}
