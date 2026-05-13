@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trigger Journey Activity</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/postmonger/0.0.16/postmonger.js"></script>
+
+    <script>
+        let connection = new Postmonger.Session();
+        let payload = {};
+
+        connection.on('initActivity', initialize);
+
+        function initialize(data) {
+            if (data) {
+                payload = data;
+            }
+
+            connection.trigger('updateButton', {
+                button: 'next',
+                enabled: true
+            });
+        }
+
+        function save() {
+
+            payload.metaData.isConfigured = true;
+
+            connection.trigger('updateActivity', payload);
+        }
+
+        connection.on('clickedNext', save);
+    </script>
+</head>
+
+<body>
+    <div style="padding:20px">
+        <h2>Trigger Journey Activity</h2>
+        <p>
+            This activity will trigger another journey when the contact reaches this step.
+        </p>
+    </div>
+</body>
+</html>
